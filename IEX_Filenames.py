@@ -2,8 +2,6 @@
 import os, shutil, sys
 import ctypes 
 from SETTINGS import setup
-# I still dont understand why you say from tkinter import star, then from tkinter import ttk. I thought you just
-# imported everything?
 from tkinter import *
 from tkinter import ttk
 import subprocess
