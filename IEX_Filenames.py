@@ -15,11 +15,6 @@ subprocess.run('explorer c:\Development\sqlite\\allscripts import\system files\s
 
 # DB functions for audit tables, to be used in Click function
 def create_connection(db_file):
-    """ create a database connection to the SQLite database
-        specified by db_file
-    :param db_file: database file
-    :return: Connection object or None
-    """
     conn = None
     try:
         conn = sqlite3.connect(db_file)
@@ -31,11 +26,6 @@ def create_connection(db_file):
 
 
 def create_table(conn, create_table_sql):
-    """ create a table from the create_table_sql statement
-    :param conn: Connection object
-    :param create_table_sql: a CREATE TABLE statement
-    :return:
-    """
     try:
         c = conn.cursor()
         c.execute(create_table_sql)
@@ -44,18 +34,20 @@ def create_table(conn, create_table_sql):
 
 
 def insert_imports_row(conn, imports_row):
-    """
-    Create a new project into the projects table
-    :param conn:
-    :param project:
-    :return: project id
-    """
     sql = ''' INSERT INTO imports(datetime_imported,mrn)
               VALUES(?,?) '''
     cur = conn.cursor()
     cur.execute(sql, imports_row)
     conn.commit()
     return cur.lastrowid
+
+###################################################################################################################################
+# The "Click" function below executes when you hit the submit button in the app. It looks in the Imports folder, creates a list of
+# the filenames in them, then loops over the list and for each one changes the filename to the IEX filename convention, inserts the 
+# PatientID and a transactionID at the end, and then moves it into the IEX folder. Once it's complete it gives the 'done' window.
+# If there are no files in the Import folder it throws an error and exits the function. If there is no Patient ID entered it throws
+# an error and exits the function.
+###################################################################################################################################
 
 
 def click():
