@@ -14,4 +14,4 @@ The patient ID and date time are saved into a SQLITE DB audit table.
 If the user needs to go back and check which PatientID they entered, they click the Audit Log button in the GUI and it opens another tkinter window which displays rows from the 
 audit tabes in sqlite.
 
-This is a rudimentay program that I hope serves to demonstrate my knowledge of Python and SQL.
+This is a rudimentary program that I hope serves to demonstrate my knowledge of Python and SQL.
